@@ -1,0 +1,9 @@
+
+@import "tailwindcss";
+
+@font-face {
+  font-family: "TintaArabic";
+  src: url("/fonts/TintaArabic.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
