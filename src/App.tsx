@@ -1,26 +1,36 @@
 
-import './index.css'
+
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// Pages
+import HomeWrapper from "./pages/Home/HomeWrapper";
+// import About from "./pages/About";
+// import Support from "./pages/Support";
+// import Terms from "./pages/Terms";
+// import Privacy from "./pages/Privacy";
 
 function App() {
   return (
-    <div className="p-6 space-y-4">
-      <h1 className="font-sans text-8xl font-bold">
-        Poppins Heading
-      </h1>
-
-      <p className="font-sans text-lg text-red-700">
-        This is a paragraph in Poppins.
-      </p>
-
-      <h2 className="font-arabic text-3xl text-amber-900">
-        بیری چھوٹی مکھي کا شہد
-      </h2>
-
-      <p className="font-arabic text-xl">
-        Arabic branding text with Tinta Arabic
-      </p>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomeWrapper />} />
+        {/* <Route path="/about" element={<About />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} /> */}
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
 export default App;
+
+
+
+
+
