@@ -1,85 +1,4 @@
 
-
-
-
-
-// import Navbar from "./Navbar";
-
-// interface HeroProps {
-//   title: string;
-//   description?: string;
-//   bgImage: string;
-//   insideHero?: boolean;
-//   centerContent?: boolean;
-// }
-
-// const Hero: React.FC<HeroProps> = ({
-//   title,
-//   description,
-//   bgImage,
-//   insideHero = true,
-//   centerContent = true,
-// }) => {
-//   return (
-//     <div
-//       className="relative w-full min-h-[652px] md:min-h-[700px] bg-cover bg-center rounded-b-[50px]"
-//       style={{ backgroundImage: `url(${bgImage})` }}
-//     >
-//       {/* Dark overlay */}
-//       <div className="absolute inset-0 bg-black/40 z-0 rounded-b-[50px]" />
-
-//       {/* Navbar (always fixed at top of Hero) */}
-//       {insideHero && (
-//         <div className="relative z-20 top-[84px]">
-//           <Navbar />
-//         </div>
-//       )}
-
-//       {/* Hero content */}
-//       <div className="relative z-10 max-w-[1172px] mx-auto px-6 md:px-12">
-//         <div
-//           className={`flex flex-col 
-//             ${centerContent 
-//               ? "items-center text-center pt-[160px]" // home page
-//               : "items-start text-left pt-[190px]"   // contact page
-//             }`}
-//         >
-//           <h1 className="text-white text-[60px] sm:text-5xl md:text-6xl font-bold leading-snug">
-//             {title}
-//           </h1>
-//           {description && (
-//             <p className="mt-4 max-w-2xl text-white text-base sm:text-lg md:text-xl leading-relaxed capitalize">
-//               {description}
-//             </p>
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Hero;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import Navbar from "./Navbar";
 
 interface HeroProps {
@@ -111,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({
 
       {/* Navbar (inside Hero) */}
       {insideHero && (
-        <div className="relative z-20 top-[60px] md:top-[84px]">
+        <div className="relative  top-[54px] z-20  md:top-[54px]">
           <Navbar />
         </div>
       )}
@@ -141,3 +60,10 @@ const Hero: React.FC<HeroProps> = ({
 };
 
 export default Hero;
+
+
+
+
+
+
+

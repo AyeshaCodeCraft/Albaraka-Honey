@@ -2,8 +2,7 @@
 
 
 import Hero from "../../components/Hero";
-import Gift from "./sections/Gift";
-import Honey from "./sections/Honey";
+import Shop from "../../components/Shop";
 
 const HomeWrapper = () => {
   return (
@@ -18,10 +17,52 @@ carefully packed to preserve all its natural goodness."
         insideHero={true}
         centerContent={true}
       />
-      <Gift />
-      <Honey />
+      <Shop/>
+ 
     </div>
   );
 };
 
 export default HomeWrapper;
+
+
+
+
+
+
+
+// import Navbar from "../../components/Navbar";
+// import Shop from "./sections/Shop"; 
+
+// const HomeWrapper = () => {
+//   return (
+//     <div className="w-full">
+//       <Navbar />
+//       <Shop />
+//     </div>
+//   );
+// };
+
+// export default HomeWrapper;
+
+
+
+
+// mport Hero from "../../components/Hero";
+// import Navbar from "../../components/Navbar";
+// import Shop from "../../components/Shop";
+
+// const HomeWrapper = () => {
+//   return (
+//     <div className="w-full">
+//       {/* Add same spacing as Navbar inside Hero */}
+//       <div className="pt-[54px]">
+//         <Navbar />
+//       </div>
+
+//       <Shop />
+//     </div>
+//   );
+// };
+
+// export default HomeWrapper;

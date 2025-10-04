@@ -8,10 +8,9 @@ import Footer from "./components/Footer";
 // Pages
 import HomeWrapper from "./pages/Home/HomeWrapper";
 import ContactWrapper from "./pages/Contact/ContactWrapper"
-// import About from "./pages/About";
-// import Support from "./pages/Support";
-// import Terms from "./pages/Terms";
-// import Privacy from "./pages/Privacy";
+import ShopWrapper from "./pages/Shop/ShopWrapper";
+import AboutUs from "./pages/AboutUs/AboutUs";
+
 
 function App() {
   return (
@@ -19,11 +18,10 @@ function App() {
       {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<HomeWrapper />} />
-        <Route path="/contact" element={<ContactWrapper />} />
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy" element={<Privacy />} /> */}
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/shop" element={<ShopWrapper />} />
+        <Route path="/contact-us" element={<ContactWrapper />} />
+   
       </Routes>
       <Footer />
     </Router>
