@@ -1,4 +1,18 @@
 
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
 @import "tailwindcss";
 
 @font-face {
@@ -6,4 +20,18 @@
   src: url("/fonts/TintaArabic.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
+}
+
+
+
+/* Remove Chrome autofill blue background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important; /* #1f2937 = Tailwind gray-800 */
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
