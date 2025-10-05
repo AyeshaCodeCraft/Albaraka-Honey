@@ -1,0 +1,102 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "nameEn": "Apis Mellifera Wild Honey",
+      "nameUr": "بڑی مکھی کا جنگلی شہد",
+      "price": 1800,
+      "oldPrice": 2400,
+      "discount": "Sale 25% Off",
+      "rating": 5.1,
+      "reviewsCount": 61,
+      "weight": "01 Kg",
+      "images": [
+        "/product1.png",
+        "/product-1.png",
+        "/product-2.png",
+        "/product-3.png"
+      ]
+    },
+    {
+      "id": "2",
+      "nameEn": "Apis Florea Wild Honey",
+      "nameUr": "چھوٹی مکھی کا جنگلی شہد",
+      "price": 2800,
+      "oldPrice": 3200,
+      "discount": "Sale 13% Off",
+      "rating": 4.8,
+      "reviewsCount": 45,
+      "weight": "01 Kg",
+      "images": [
+        "/product2.png",
+        "/product-1.png",
+        "/product-2.png",
+        "/product-3.png"
+      ]
+    },
+    {
+      "id": "3",
+      "nameEn": "Honey From The Small Berry Bee",
+      "nameUr": "بیری چھوٹی مکھي کا شہد",
+      "price": 3500,
+      "oldPrice": 3800,
+      "discount": "Sale 08% Off",
+      "rating": 4.7,
+      "reviewsCount": 32,
+      "weight": "01 Kg",
+      "images": [
+        "/product3.png",
+        "/product-1.png",
+        "/product-2.png",
+        "/product-3.png"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "productId": 1,
+      "name": "Ali",
+      "email": "ali@example.com",
+      "message": "Best honey ever!",
+      "rating": 5,
+      "date": "2025-10-02"
+    },
+    {
+      "id": "2",
+      "productId": 2,
+      "name": "Sara",
+      "email": "sara@example.com",
+      "message": "Good quality but expensive.",
+      "rating": 4,
+      "date": "2025-10-01"
+    },
+    {
+      "id": "3",
+      "productId": 3,
+      "name": "Ahmed",
+      "email": "ahmed@example.com",
+      "message": "Really liked the berry honey, unique taste.",
+      "rating": 5,
+      "date": "2025-10-04"
+    },
+    {
+      "id": "c514",
+      "productId": "3",
+      "name": "Ayesha",
+      "email": "test@gmail.com",
+      "message": "Good Quality Tasty",
+      "rating": 0,
+      "date": "04/10/2025"
+    },
+    {
+      "id": "5549",
+      "productId": "2",
+      "name": "Ayesha",
+      "email": "ayesha@gmail.com",
+      "message": "Satisfied with the product",
+      "rating": 5,
+      "date": "05/10/2025"
+    }
+  ]
+}
