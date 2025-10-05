@@ -53,7 +53,7 @@ const ContactWrapper = () => {
       {/* Hero with Navbar inside */}
       <Hero
         title="Contact Us"
-        description="At Al Baraka Honey, we bring you pure and natural honey harvested from trusted hives. Every jar is filled with nature’s goodness."
+        description="At Al Baraka Honey, we bring you pure and natural honey harvested from trusted hives. From Apis mellifera and Apis florea wild honey to the  rare Berry Bee Honey, every jar is filled with nature’s goodness."
         bgImage="/bgImage.png"
         insideHero={true} // Navbar sits inside Hero
         centerContent={false}
