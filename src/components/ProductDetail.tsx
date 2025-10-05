@@ -1,175 +1,104 @@
 
-import React, { useState } from "react";
-
-interface ProductDetailProps {
-  nameEn: string;
-  nameUr: string;
-  price: number;
-  oldPrice: number;
-  discount: string;
-  rating: number;
-  reviews: number;
-  weight: string;
-  images: string[];
-}
+import React from "react";
+import { useCart } from "../context/CartProvider";
+import cartIcon from "/cart-icon.png";
+import type { ProductDetailProps } from "../types/Product";
 
 const ProductDetail: React.FC<{ product: ProductDetailProps }> = ({ product }) => {
-  const [selectedImg, setSelectedImg] = useState(product.images[0]);
-  const [quantity, setQuantity] = useState(1);
+  const { cart, addToCart, updateQuantity } = useCart();
+  const cartItem = cart.find((item) => item.id === product.id);
+  const quantity = cartItem ? cartItem.quantity : 1;
+
+  const handleAddToCart = () => {
+    if (cartItem) updateQuantity(product.id, quantity);
+    else
+      addToCart({
+        id: product.id,
+        nameEn: product.nameEn,
+        nameUr: product.nameUr,
+        price: product.price,
+        oldPrice: product.oldPrice,
+        image: product.images[0],
+        quantity,
+      });
+  };
+
+  const incrementQuantity = () => {
+    if (cartItem) updateQuantity(product.id, quantity + 1);
+    else
+      addToCart({
+        id: product.id,
+        nameEn: product.nameEn,
+        nameUr: product.nameUr,
+        price: product.price,
+        oldPrice: product.oldPrice,
+        image: product.images[0],
+        quantity: 1,
+      });
+  };
+
+  const decrementQuantity = () => {
+    if (cartItem && quantity > 1) updateQuantity(product.id, quantity - 1);
+  };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-8">
-      {/* Left Side */}
-      <div>
-        <img src={selectedImg} alt={product.nameEn} className="w-full h-[400px] object-cover rounded-xl shadow" />
-        <div className="flex gap-4 mt-4">
+    <div className="max-w-[1157px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mt-[70px] font-poppins px-4 md:px-0">
+      {/* LEFT */}
+      <div className="w-full">
+        <div className="relative w-full flex justify-center items-center">
+          <img src={product.images[0]} alt={product.nameEn} className="max-h-[480px] object-contain" />
+          <div className="absolute bottom-[25px] left-1/2 transform -translate-x-1/2">
+            <span className="bg-white text-black px-4 py-2 rounded-full text-sm font-bold shadow">{product.discount}</span>
+          </div>
+        </div>
+        <div className="flex gap-4 mt-6 justify-center">
           {product.images.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt="thumb"
-              onClick={() => setSelectedImg(img)}
-              className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${
-                selectedImg === img ? "border-black" : "border-gray-300"
-              }`}
-            />
+            <div key={idx} className="w-20 h-20 flex items-center justify-center border-2 rounded-lg cursor-pointer">
+              <img src={img} alt="thumb" className="max-h-full max-w-full object-contain" />
+            </div>
           ))}
         </div>
       </div>
 
-      {/* Right Side */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">{product.nameUr}</h2>
-        <p className="text-gray-500">{product.nameEn}</p>
-
-        <div className="flex items-center gap-2 text-yellow-500">
-          {"★".repeat(Math.floor(product.rating))} 
-          <span className="text-gray-600 text-sm">({product.reviews} Reviews)</span>
+      {/* RIGHT */}
+      <div className="flex flex-col gap-5 pt-[30px] md:pt-[50px]">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <span className="font-normal text-[14px] tracking-wide">100% Purity Guaranteed</span>
+          <div className="flex items-center gap-2">
+            <span className="text-yellow-500 text-lg">{"★".repeat(Math.floor(product.rating))}</span>
+            <span className="font-semibold text-[14px]">{product.rating} ({product.reviewsCount} Reviews)</span>
+          </div>
         </div>
 
-        <div className="flex gap-3 items-center">
-          <span className="text-red-600 text-xl font-bold">Rs. {product.price}</span>
-          <span className="line-through text-gray-400">was {product.oldPrice}</span>
-          <span className="bg-green-100 text-green-600 px-2 py-1 text-sm rounded-lg">
-            {product.discount}
-          </span>
+        <h2 className="text-[28px] md:text-[40px] font-bold font-arabic leading-snug">{product.nameUr}</h2>
+        <p className="text-[18px] md:text-[20px]">{product.nameEn}</p>
+
+        <div className="flex flex-wrap items-center gap-2 md:gap-3">
+          <span className="text-black text-[16px] md:text-[18px] font-semibold">Price:</span>
+          <span className="text-gray-400 text-sm line-through">Rs. {product.oldPrice}</span>
+          <span className="text-[18px] md:text-[20px] font-bold">Rs. {product.price}</span>
         </div>
 
-        <p className="text-sm">Weight: <span className="font-semibold">{product.weight}</span></p>
-
-        {/* Quantity Selector */}
-        <div className="flex items-center gap-4 mt-4">
-          <button 
-            onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            className="px-3 py-1 bg-gray-200 rounded-lg"
-          >-</button>
-          <span className="text-lg">{quantity}</span>
-          <button 
-            onClick={() => setQuantity(quantity + 1)}
-            className="px-3 py-1 bg-gray-200 rounded-lg"
-          >+</button>
+        <div className="flex flex-wrap items-center gap-2 md:gap-3 mt-2">
+          <span className="text-black text-[16px] md:text-[18px] font-semibold">Weight:</span>
+          <button className="bg-[#302A25] px-[24px] md:px-[32px] py-[6px] cursor-pointer rounded-full text-[#FFFFFF] text-[14px] font-medium">{product.weight}</button>
         </div>
 
-        {/* Add to Cart */}
-        <button className="mt-4 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition">
-          Add To Cart
-        </button>
+        <div className="flex items-center justify-between mt-6 gap-4 flex-wrap">
+          <div className="flex items-center bg-[#F0F0F0] rounded-[40px] cursor-pointer px-3 py-2 w-fit">
+            <button onClick={decrementQuantity} className="px-3 py-1 text-lg">-</button>
+            <span className="px-4">{quantity}</span>
+            <button onClick={incrementQuantity} className="px-3 py-1 text-lg">+</button>
+          </div>
+
+          <button onClick={handleAddToCart} className="flex items-center justify-center gap-2 bg-[#302A25] text-white px-6 py-3 rounded-full hover:bg-gray-800 transition flex-1 md:flex-none">
+            <img src={cartIcon} alt="cart" className="w-5 h-5" />
+            <span>Add To Cart</span>
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default ProductDetail;
-
-
-
-
-
-// "use client";
-// import  { useEffect } from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Navigation, Thumbs } from "swiper/modules";
-
-// import "swiper/swiper-bundle.css";
-
-// type Product = {
-//   id: number;
-//   nameEn: string;
-//   nameUr: string;
-//   price: number;
-//   oldPrice: number;
-//   discount: string;
-//   rating: number;
-//   reviews: number;
-//   weight: string;
-//   images: string[];
-// };
-
-// interface ProductDetailProps {
-//   product: Product;
-// }
-
-// export default function ProductDetail({ product }: ProductDetailProps) {
-//   useEffect(() => {
-//     const swiperEl = document.querySelector(".product-swiper") as any;
-//     if (swiperEl && swiperEl.swiper) {
-//       swiperEl.swiper.params.navigation.prevEl = ".custom-prev";
-//       swiperEl.swiper.params.navigation.nextEl = ".custom-next";
-//       swiperEl.swiper.navigation.init();
-//       swiperEl.swiper.navigation.update();
-//     }
-//   }, []);
-
-//   return (
-//     <div className="w-full max-w-xl mx-auto">
-//       {/* Main Swiper */}
-//       <Swiper
-//         modules={[Navigation, Thumbs]}
-//         spaceBetween={10}
-//         slidesPerView={1}
-//         navigation={{
-//           prevEl: ".custom-prev",
-//           nextEl: ".custom-next",
-//         }}
-//         className="product-swiper rounded-lg overflow-hidden"
-//       >
-//         {product.images.map((img, idx) => (
-//           <SwiperSlide key={idx}>
-//             <img src={img} alt={`${product.nameEn} ${idx}`} className="w-full" />
-//           </SwiperSlide>
-//         ))}
-//       </Swiper>
-
-//       {/* Thumbnails */}
-//       <div className="grid grid-cols-4 gap-2 mt-4">
-//         {product.images.map((img, idx) => (
-//           <img
-//             key={idx}
-//             src={img}
-//             alt={`Thumb ${idx}`}
-//             className="w-full rounded border"
-//           />
-//         ))}
-//       </div>
-
-//       {/* Arrows below */}
-//       <div className="flex justify-center items-center gap-6 mt-4">
-//         <button className="custom-prev bg-black text-white w-10 h-10 flex items-center justify-center rounded-full shadow hover:bg-gray-800">
-//           <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5"
-//             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-//             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-//           </svg>
-//         </button>
-//         <button className="custom-next bg-black text-white w-10 h-10 flex items-center justify-center rounded-full shadow hover:bg-gray-800">
-//           <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5"
-//             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-//             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-//           </svg>
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
